@@ -20,7 +20,7 @@ import com.harpreet.expenseTracker.service.ExpenseService;
 
 import tools.jackson.databind.ObjectMapper;
 
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -91,6 +91,18 @@ public class ExpenseControllerTest {
         when(expenseService.getExpenseById(99L)).thenReturn(null);
 
         mockMvc.perform(get("/expenses/99"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deleteExpense_notFound_returns404() throws Exception {
+
+        String id = """
+                99
+                """;
+        //when(expenseService.deleteExpense(id)).thenReturn(false);
+
+        mockMvc.perform(delete("/expenses/99"))
                 .andExpect(status().isNotFound());
     }
 
