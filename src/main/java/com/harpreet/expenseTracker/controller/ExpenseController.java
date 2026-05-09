@@ -31,6 +31,8 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
 
+
+    //a get mapping to return all the expenses in the database
     @GetMapping("/expenses")
     public List<Expense> getAllExpenses() {
         return expenseService.getAllExpenses();

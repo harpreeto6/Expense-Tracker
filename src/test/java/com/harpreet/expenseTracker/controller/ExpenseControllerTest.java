@@ -39,13 +39,14 @@ public class ExpenseControllerTest {
     private ObjectMapper objectMapper;
 
 
+    // just adding these comments for checking something .....
+
     @Test
     void getAllExpenses_returns200AndList() throws Exception {
         List<Expense> expenses = List.of(
                 new Expense(1L, "Lunch", 12.99, "Food", LocalDate.of(2026, 5, 1)),
                 new Expense(2L, "Bus Pass", 25.00, "Transport", LocalDate.of(2026, 5, 2))
         );
-
         when(expenseService.getAllExpenses()).thenReturn(expenses);
 
         mockMvc.perform(get("/expenses"))
