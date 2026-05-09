@@ -86,5 +86,13 @@ public class ExpenseControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void getExpenseById_notFound_returns404() throws Exception {
+        when(expenseService.getExpenseById(99L)).thenReturn(null);
+
+        mockMvc.perform(get("/expenses/99"))
+                .andExpect(status().isNotFound());
+    }
+
     
 }
