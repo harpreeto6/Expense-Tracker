@@ -1,0 +1,31 @@
+name : Expense Tracker CI
+
+on:
+  push:
+    branches: [ main, first-branch ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  jobNo1:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      -name: Checkout code
+       uses: actions/checkout@v3
+
+      -name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: "maven"
+
+      -name: Run tests
+      run: mvn test
+
+      -name: Build this app
+      run: mvn package
